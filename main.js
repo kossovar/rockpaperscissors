@@ -57,5 +57,33 @@ function getWinner(p, c) {
     }
 }
 
+function showWinner(winner, computerChoice) { 
+    if(winner === 'player') {
+        // Increment player score
+        scoreboard.player++;
+        // Show modal result
+        result.innerHTML = `
+        <h1 class="text-win">You Win</h1>
+        <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+        <p>Computer Chose <strong>${computerChoice}</strong></p>
+        `;
+    } else if(winner === 'computer') {
+        // Increment player score
+        scoreboard.computer++;
+        // Show modal result
+        result.innerHTML = `
+        <h1 class="text-lose">You Lose</h1>
+        <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+        <p>Computer Chose <strong>${computerChoice}</strong></p>
+        `;
+    } else {
+        result.innerHTML = `
+        <h1>It's a draw</h1>
+        <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+        <p>Computer Chose <strong>${computerChoice}</strong></p>
+        `;
+    }
+}
+
 // Event listeners
 choices.forEach(choices => choices.addEventListener('click', play));
