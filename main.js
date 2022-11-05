@@ -16,8 +16,7 @@ function play(e) {
     const playerChoice = e.target.id;
     const computerChoice = getComputerChoice();
     const winner = getWinner(playerChoice, computerChoice);
-
-    console.log(playerChoice, computerChoice, winner);
+    showWinner(winner, computerChoice);
 }
 
 // Get computers choice 
@@ -83,7 +82,23 @@ function showWinner(winner, computerChoice) {
         <p>Computer Chose <strong>${computerChoice}</strong></p>
         `;
     }
+    // Show score
+    score.innerHTML = `
+        <p>Player: ${scoreboard.player}</p>
+        <p>Computer: ${scoreboard.computer}</p>
+    `;
+
+
+    modal.style.display = 'block';
+}
+
+// Clear modal
+function clearModal(e) {
+    if(e.target == modal) {
+        modal.style.display = 'none';
+    }
 }
 
 // Event listeners
 choices.forEach(choices => choices.addEventListener('click', play));
+window.addEventListener('click', clearModal)
